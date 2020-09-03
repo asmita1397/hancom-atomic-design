@@ -6,5 +6,6 @@ module.exports = {
       .post()
       .use('storysource')
       .loader(require.resolve('@storybook/addon-storysource/loader'))
-  }
+  },
+  lintOnSave:false
 }

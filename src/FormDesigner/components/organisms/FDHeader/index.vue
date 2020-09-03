@@ -49,10 +49,9 @@
               <li class="separator"></li>
               <li>ToolBox</li>
               <li>Tab Order</li>
-              <li>
-                Microscoft Excel
+              <li>Microscoft Excel
                 <ul class="submenu">
-                  <li>hhhhh</li>
+                   <li>hhhhh</li>
                 </ul>
               </li>
             </ul>
@@ -61,8 +60,7 @@
             Insert
             <ul>
               <li>Procedure</li>
-              <li>Userform</li>
-              <!-- @click="handleAddUserForm" -->
+              <li >Userform</li>
               <li>Module</li>
               <li>class Module</li>
               <li class="separator"></li>
@@ -81,8 +79,8 @@
     </div>
 
     <div class="thirdrow">
-      <i class="material-icons">&#xe5d4;</i>
-      <i style="font-size:17px" class="fa">&#xf1c3;</i>
+       <i class="material-icons">&#xe5d4;</i>
+      <!--<i style="font-size:17px" class="fa">&#xf1c3;</i>
       <i style="font-size:17px" class="fa">&#xf0c7;</i>
       <i style="font-size:17px" class="fa">&#xf0c4;</i>
       <i style="font-size:17px" class="fa">&#xf0c5;</i>
@@ -91,12 +89,23 @@
       <i style="font-size:17px" class="fa">&#xf01e;</i>
       <i style="font-size:15px" class="fa">&#xf04b;</i>
       <i style="font-size:17px" class="fa">&#xf28c;</i>
-      <i style="font-size:17px" class="fa">&#xf04d;</i>
+      <i style="font-size:17px" class="fa">&#xf04d;</i> -->
+      <img src="../../../assets/header-icons/file-save.svg" class="fa"/>
+      <img src="@/FormDesigner/assets/header-icons/cut.svg" class="fa"/>
+      <img src="@/FormDesigner/assets/header-icons/copy.svg" class="fa"/>
+      <img src="@/FormDesigner/assets/header-icons/paste.svg" class="fa"/>
+      <img src="@/FormDesigner/assets/header-icons/find.svg" class="fa"/>
+      <img src="@/FormDesigner/assets/header-icons/undo.svg" class="fa"/>
+      <img src="@/FormDesigner/assets/header-icons/redo.svg" class="fa"/>
+      <img src="@/FormDesigner/assets/header-icons/design-mode.svg" class="fa"/>
+      <img src="@/FormDesigner/assets/header-icons/pj-explorer.svg" class="fa"/>
+      <img src="@/FormDesigner/assets/header-icons/pj-property.svg" class="fa"/>
+      <img src="@/FormDesigner/assets/header-icons/obj-browser.svg" class="fa"/>
+      <img src="@/FormDesigner/assets/header-icons/tool-box.svg" class="fa"/>
+      <img src="@/FormDesigner/assets/header-icons/help.svg" class="fa"/>
+      
+     
 
-      <button class="btn-style" @click="handleClick('userForm1')">Userform1</button>
-      <button class="btn-style" @click="handleClick('userForm2')">Userform2</button>
-      <button class="btn-style" @click="handleClick('userForm3')">Userform3</button>
-      <button class="btn-style" @click="handleClick('userForm4')">Userform4</button>
     </div>
   </div>
 </template>
@@ -105,46 +114,10 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Mutation, Getter } from "vuex-class";
-/* import { EventBus } from "./event-bus";
-import { UserFormEntity } from "../entities/UserForm"; */
-
+/* import {  } from "../../../assets"; */
 @Component({})
 export default class Header extends Vue {
-  /*  @Getter prevModalZIndex!: any;
-  @Getter getUseFormCount!: any;
-  @Mutation incrementuserFormCount!: any;
 
-  
-  @Mutation addtreeBrowserData!: Function;
-  @Mutation updatePrevModalZIndex!: any;
-
-  handleAddUserForm(): void {
-    this.incrementuserFormCount();
-    this.updatePrevModalZIndex();
-
-    const getUserForm = new UserFormEntity()
-    const newUserForm = {
-      ...getUserForm,
-      property: {
-        ...getUserForm.property,
-        name: "UserForm" + (this.getUseFormCount + 1),
-        caption:"UserForm" + (this.getUseFormCount + 1),
-        type: "UserForm",
-        outerWindowZIndex: this.prevModalZIndex.toString()
-      }
-    };
-
-    this.addtreeBrowserData(newUserForm);
-  }
-  handleClick(data: string)
-  {
-     console.log("data",data)
-     EventBus.$emit(
-      "userFormButtonClicked",
-       data
-     )
-  }
- */
 }
 </script>
 
@@ -161,7 +134,9 @@ export default class Header extends Vue {
   border: none;
   float: left;
 }
-
+.thirdrow{
+margin-top: 5px;
+}  
 .tablink:hover {
   background-color: #4dbce0;
 }
@@ -187,8 +162,9 @@ export default class Header extends Vue {
   background-color: red;
 }
 .fa {
-  padding: 3px;
-  margin: 2px;
+  /* padding: 3px; */
+  margin-left: 3px;
+  margin-right:3px;
 }
 .material-icons {
   size: 15px;
@@ -300,7 +276,7 @@ i:hover {
   border-radius: 3px;
   overflow: hidden;
 }
-.btn-style {
+.btn-style{
   border: 1px solid gray;
   border-radius: 5px;
   background-color: white;
@@ -314,8 +290,118 @@ i:hover {
   top: -3px;
   position: relative;
 }
-:focus {
-  outline: none;
+:focus{
+  outline:none
 }
+#menu-bar
+{
+}
+ul.main-menu
+{
+    list-style-type: none;
+    margin: 0px 0px 10px 0px;
+    padding: 0px;  
+    z-index: 1000000;  
+}
+ul.main-menu > li
+{
+    margin: 0;
+    display: inline;
+    list-style-type: none;
+    padding: 6px 4px 6px 6px;
+    line-height: 28px;
+    vertical-align: middle;
+    cursor: default;
+    outline: none;
+    border-style: solid;
+    border-width: 1px 1px 0 1px;
+    border-color: transparent;
+    z-index: 1000000;
+}
+
+ul.main-menu > li.active-menu
+{
+    background-color: #fff;
+    border-color: #ccc;
+    -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000000;
+}
+
+ul.main-menu ul li a
+{
+    color: #000;
+    text-decoration: none;
+    display: block;
+    white-space: nowrap;
+}
+ul.main-menu li ul li a span
+{
+    font-size: 11px;
+    color: #999;
+    float:right;
+    right: 10px;
+    left: auto;
+    position: absolute;
+}
+
+/* SUBMENU */
+ul.main-menu > li  ul
+{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+    border-width:1px;
+    border-style: solid;
+    border-color: #ccc;
+    background-color: #fff;
+    -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000000;
+}
+ul.main-menu li ul li
+{
+    display:list-item;
+    margin: 0;
+    line-height: 26px;
+    padding-right: 40px;
+    min-width: 100px;
+    cursor: pointer;
+    text-indent: 30px;
+    white-space:nowrap;
+    z-index: 1000000;
+}
+ul.main-menu li:hover
+{
+    background-color: whiteSmoke; /*#fef7cb;*/
+}
+ul.main-menu li.active-menu:hover
+{
+    background-color: #fff;
+}
+ul.main-menu li ul li.disabled, ul.main-menu li ul li.disabled:hover, ul.main-menu li ul li.disabled a
+{
+    color: #ddd;
+    cursor:default;
+    background-color: #fff;
+}
+
+ul.main-menu li.separator  
+{
+    border-top: 1px solid #ddd; 
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.submenu 
+{
+    /* background-image: url(../images/menu-right-arrow.png); */
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
 /* .tablink:hover .dropbtn {background-color: #3e8e41;} */
 </style>

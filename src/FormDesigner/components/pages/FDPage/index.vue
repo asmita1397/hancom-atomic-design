@@ -2,7 +2,7 @@
   <div id="app">
     <div class="container">
       <div class="header">
-       <!--  <Header /> -->
+        <Header />
       </div>
       <div class="mainbody">
         <Split class="outersplit">
@@ -37,7 +37,7 @@
               </SplitArea>
 
               <SplitArea class="innersplit">
-               <!--  <UserFormPropertiesList /> -->
+                <PropertiesList />
               </SplitArea>
             </Split>
           </SplitArea>
@@ -62,12 +62,16 @@ import { Component, Vue } from "vue-property-decorator";
 import ToolBox from "@/FormDesigner/components/organisms/FDToolBox/index.vue";
 import Userform from "@/FormDesigner/components/organisms/FDUserform/index.vue";
 import { treeData } from "@/FormDesigner/models/TreeData";
+import PropertiesList from '@/FormDesigner/components/organisms/FDPropertyList/index.vue'
 import TreeBrowser from "@/FormDesigner/components/organisms/FDTreeBrowser/index.vue";
+import Header from "@/FormDesigner/components/organisms/FDHeader/index.vue";
 @Component({
   components: {
       ToolBox,
       Userform,
-      TreeBrowser
+      TreeBrowser,
+      PropertiesList,
+      Header
   }
 })
 export default class FDPage extends Vue {
@@ -214,6 +218,9 @@ export default class FDPage extends Vue {
 }
 :focus {
   outline: none;
+}
+.mainbody{
+  margin-top:37px;
 }
 </style>
 

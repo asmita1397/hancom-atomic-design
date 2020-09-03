@@ -16,34 +16,32 @@
       <label for="userForm"></label>
 
       <select class="form-control" name="selectedUserForm" id="selectedUserForm">
-        <option>UserForm1 UserForm</option>
-      </select>     
+        <option>Userform</option>
+
+      </select>    
+
     </div>
+    <UserFormTable/>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-
-import UserFormTable from "./UserFormTable.vue";
-
-import ListControlTable from "./ListControlTable.vue";
-
+import UserFormTable from "@/FormDesigner/components/organisms/FDUserFormTable/index.vue";
 @Component({
   components: {
-    UserFormTable,
-   
+   UserFormTable
   }
 })
-export default class UserFormPropertiesList extends Vue {
+export default class PropertiesList extends Vue {
   noDisplay = false;
   noDisplayTable() {
     this.noDisplay = true;
   }
-  
+ 
 
   mounted() {
-   
+  
   }
 }
 </script>
