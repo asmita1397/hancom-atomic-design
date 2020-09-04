@@ -44,7 +44,7 @@ const controlData: controlData = {
     StartUpPosition: 1,
     Tag: "",
     Top: 0,
-    Width:300,
+    Width:600,
     WhatsThisButton: false,
     WhatsThisHelp: false,
     Zoom: 100

@@ -320,7 +320,7 @@ export default class UserForm extends Vue {
   background-color: rgb(180, 211, 252);
 }
 .inner-window-content {
-  width: 99%;
+  width: 99.5%;
   height: calc(100% - 32px);
   position: absolute;
   left: 0px;
