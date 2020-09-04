@@ -41,14 +41,13 @@ export type FdMutations<S = fdState> = {
 
 const mutations : MutationTree<fdState> & FdMutations = {
   fdActionSample (state, payload) {
-    debugger
   },
   addControl (state, payload) {
     const targetData = payload.target.propControlData
     targetData.controls.push(payload.item)
   },
   updateControl (state, payload) {
-    debugger
+    
     const targetData = payload.target.propControlData
     if (payload.proprtyName && targetData.properties) {
       // ToDo: check update value is valid
@@ -80,10 +79,10 @@ const mutations : MutationTree<fdState> & FdMutations = {
     state.selectedControls.selected = payload.selected
   },
   fdEmitAction (state, payload) {
-    debugger
+
   },
   ideEmitAction (state, payload) {
-    debugger
+
   }
 }
 

@@ -2,7 +2,7 @@
 import actions from './actions'
 import mutations from './mutations'
 
-const controlData: any = {
+const controlData: controlData = {
   properties: {
     BackColor: "#ffffff",
     BorderColor: "#ffffff",
@@ -22,7 +22,7 @@ const controlData: any = {
     },
     ForeColor: "#ffffff",
     Height:300,
-    HelpContextID: 0,
+    HelpContextID:'0',
     KeepScrollBarsVisible: 3,
     Left: 0,
     MouseIcon: "",
@@ -49,93 +49,7 @@ const controlData: any = {
     WhatsThisHelp: false,
     Zoom: 100
   },
-  controls: [{
-    properties:{
-        Accelerator: "",
-        AutoSize: false,
-        BackColor: "red",
-        BackStyle: 0,
-        BorderColor: "#111111",
-        BorderStyle: 1,
-        Caption: "Label1",
-        ControlTipText: "helptext",
-        Enable: true,
-        Font: {
-            FontName: "Arial",
-            FontSize: 20,
-            FontBold: true,
-            FontItalic: true,
-            FontUnderline: true,
-            FontStrikethrough: true,
-            FontStyle: "Arial Narrow Italic"
-        },
-        ForeColor: "#000000",
-        Height: 30,
-        HelpContextID: 0,
-        Left:50,
-        MouseIcon: "",
-        MousePointer: 7,
-        Name: "Label1",
-        ID: 'Label1',
-        Picture: "",
-        PicturePosition: 7,
-        SpecilalEffect: 0,
-        TabIndex: 0,
-        TabStop: true,
-        Tag: "",
-        TextAlign: 1,
-        Top: 50,
-        Visible: true,
-        Width: 100,
-        WordWrap: true
-    },extraDatas: {
-      Type:"Label"
-    }
-  },
-  {
-    properties:{
-      Accelerator: "",
-      AutoSize: false,
-      BackColor: "red",
-      BackStyle: 0,
-      Cancel:false,
-      Caption: "CommandButton1",
-      ControlTipText: "helptext",
-      Default: false,
-      Enabled: true,
-      Font: {
-          FontName: "Arial",
-          FontSize: 20,
-          FontBold: true,
-          FontItalic: true,
-          FontUnderline: true,
-          FontStrikethrough: true,
-          FontStyle: "Arial Narrow Italic"
-      },
-      ForeColor: "#000000",
-      Height: 30,
-      HelpContextID: 0,
-      Left:50,
-      Locked:false,
-      MouseIcon: "",
-      MousePointer: 7,
-      Name: "CommandButton1",
-      ID: 'CommandButton1',
-      Picture: "",
-      PicturePosition: 7,
-      TabIndex: 0,
-      TabStop: true,
-      Tag: "",
-      TakeFocusOnClick: 1,
-      Top: 200,
-      Visible: true,
-      Width: 100,
-      WordWrap: true
-  },
-  extraDatas: {
-    Type:"CommandButton"
-  }
-  }],
+  controls: [],
   extraDatas: null,
   type: ''
 }

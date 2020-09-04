@@ -37,7 +37,7 @@ export default class UseTest extends FdControlVue {
 
   onAdd () {
     const propData = this.propControlData.properties
-    const id = propData.ID + 1
+    const id =  1
     const Name = propData.Name ? propData.Name : ''
 
     const addTarget = this
@@ -46,7 +46,6 @@ export default class UseTest extends FdControlVue {
       item: { properties: { Name: Name, ID: id }, controls: [], extraDatas: null, type: 'Label' }
     })
   }
-
   onUpdate () {
     this.compodata = 'aaa'
     this.updateControl({

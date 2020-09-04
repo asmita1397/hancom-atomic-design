@@ -3,7 +3,7 @@
     <div class="outer-userform-window">
       <div class="outer-userform-header">
         <div>
-          <!-- <img src="@/assets/userform/OuterWindow.png" style="width:12px;height:12px" /> -->
+          <img src="../../../assets/userform/OuterWindow.png" style="width:12px;height:12px" />
         </div>
         <div>
           <span style="margin-left: 5px;">Book1 - UserForm1 (UserForm)</span>
@@ -78,7 +78,7 @@
               :style="{zoom:`${ctrlData.properties.Zoom}%`,border:ctrlData.properties.BorderStyle?'1px solid black':'none',
               fontSize:`${ctrlData.properties.Font.FontSize}px`}"
               tabindex="0"
-              @click.self="innerWindowFocus(true)"
+              @click.self="addControlObj($event)"
               @blur="innerWindowFocus(false)"
             >
               <div v-for="(control,controlKey) in ctrlData.controls" :key="controlKey">
@@ -93,9 +93,9 @@
                   @mousedown.stop="handleDrag($event,control.properties.ID)"
                   :ref="control.properties.ID"
                 >
-                  <ResizeHandlers :refOfResizeDiv="$refs" :controlData="control.properties.ID"  />
-                <UseLabel
-                    v-if="control.extraDatas.Type==='Label'"
+                  <ResizeHandlers :refOfResizeDiv="$refs" :controlData="control.properties.ID" />
+                  <UseLabel
+                    v-if="control.type==='Label'"
                     :Accelerator="control.properties.Accelerator"
                     :AutoSize="control.properties.AutoSize"
                     :BackColor="control.properties.BackColor"
@@ -134,9 +134,8 @@
                     :key="control.properties.ID"
                   >{{ control.properties.Caption}}</UseLabel>
 
-
-                    <UseCommandButton
-                    v-if="control.extraDatas.Type==='CommandButton'"
+                  <UseCommandButton
+                    v-if="control.type==='CommandButton'"
                     :Accelerator="control.properties.Accelerator"
                     :AutoSize="control.properties.AutoSize"
                     :BackColor="control.properties.BackColor"
@@ -189,6 +188,10 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import UseLabel from "@/FormDesigner/components/atoms/FDLabel/index.vue";
 import ResizeHandlers from "@/FormDesigner/components/organisms/FDResizeHandler/index.vue";
 import UseCommandButton from "@/FormDesigner/components/atoms/FDCommandButton/index.vue";
+import { CommandButton } from "@/FormDesigner/models/CommandButton";
+import { Label } from "@/FormDesigner/models/Label";
+import { State, Action } from "vuex-class";
+import { IaddControl } from "@/storeModules/fd/actions";
 
 import { EventBus } from "@/FormDesigner/event-bus";
 @Component({
@@ -200,6 +203,10 @@ import { EventBus } from "@/FormDesigner/event-bus";
 })
 export default class UserForm extends Vue {
   @Prop({ default: 18 }) private Height!: Number;
+  @Action("fd/addControl") addControl!: (payload: IaddControl) => void;
+  @Prop({}) propControlData!: any;
+
+  selectedControlName = "";
   innerWindowFocused: boolean = false;
   innerWindowFocus(value: boolean) {
     this.innerWindowFocused = value;
@@ -207,26 +214,64 @@ export default class UserForm extends Vue {
   handleDrag(event: any, controlID: any) {
     EventBus.$emit("drag", event, controlID);
   }
+  addControlObj(event: any) {
+    if(this.selectedControlName!=="")
+    {
+    let Name = "";
+    let data = {};
+    let type = "";
+    
+    const Left = event.offsetX;
+    const Top = event.offsetY;
+    const id = this.propControlData.controls.length + 1;
+    const addTarget = this;
+    console.log(event.clientX);
+    if (this.selectedControlName === "Label") {
+      Name = Label.Name;
+      data = Object.assign({}, Label);
+      type = "Label";
+    } else if (this.selectedControlName === "CommandButton") {
+      Name = CommandButton.Name;
+      data = Object.assign({}, CommandButton);
+      type = "CommandButton";
+    }
+    this.addControl({
+      target: addTarget,
+      item: {
+        properties: { ...data, ID: id, Left: Left, Top: Top },
+        controls: [],
+        extraDatas: null,
+        type: type
+      }
+    });
+    this.selectedControlName = "";
+  }
+  }
   get ctrlData() {
     return this.$store.state.fd.controlData;
+  }
+  mounted() {
+    EventBus.$on("selectedControl", (controlName: string) => {
+      this.selectedControlName = controlName;
+    });
   }
 }
 </script>
 
 <style scoped>
 .outer-userform-window {
- outline: 1px solid lightslategray;
+  outline: 1px solid lightslategray;
   outline-style: auto;
   position: absolute;
   border: 5px solid rgb(180, 211, 252);
   width: 98.7%;
-  height:535px;
+  height: 535px;
   border-radius: 5px;
   font-size: 14px;
   font-family: Tahoma;
   font-weight: 200;
-  position:absolute;
-  background-color:white;
+  position: absolute;
+  background-color: white;
 }
 .outer-userform-header {
   display: grid;

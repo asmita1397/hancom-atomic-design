@@ -19,7 +19,7 @@
           <div class="toolbox-icons">
             <div class="container">
               <img
-                src="@/FormDesigner/assets/toolbox-icons1/select-object.svg"
+                src='../../../assets/toolbox-icons1/select-object.svg'
                 alt="SelectIcon"
                 class="image toolbox-icon"
               />
@@ -27,7 +27,7 @@
                 <div class="text"></div>
               </div>
             </div>
-             <div class="container">
+             <div class="container" @click="selectedControl('Label')">
               <img
                 src="@/FormDesigner/assets/toolbox-icons1/label.svg"
                 alt="Label"
@@ -107,7 +107,7 @@
                 <div class="text"></div>
               </div>
             </div>
-            <div class="container">
+            <div class="container"  @click="selectedControl('CommandButton')">
               <img
                 src="@/FormDesigner/assets/toolbox-icons1/command-button.svg"
                 alt="CommandButton"
@@ -176,12 +176,18 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-
+import { EventBus } from '../../../event-bus';
+// import {  } from "../../../assets/toolbox-icons1/"
 @Component({
   components: {
   }
 })
 export default class ToolBox extends Vue {
+  selectedControl(controlName: string)
+  {
+        console.log(controlName)
+        EventBus.$emit('selectedControl',controlName)
+  }
 }
 </script>
 

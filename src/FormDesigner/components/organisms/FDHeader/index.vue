@@ -49,9 +49,10 @@
               <li class="separator"></li>
               <li>ToolBox</li>
               <li>Tab Order</li>
-              <li>Microscoft Excel
+              <li>
+                Microscoft Excel
                 <ul class="submenu">
-                   <li>hhhhh</li>
+                  <li>hhhhh</li>
                 </ul>
               </li>
             </ul>
@@ -60,7 +61,7 @@
             Insert
             <ul>
               <li>Procedure</li>
-              <li >Userform</li>
+              <li>Userform</li>
               <li>Module</li>
               <li>class Module</li>
               <li class="separator"></li>
@@ -79,7 +80,7 @@
     </div>
 
     <div class="thirdrow">
-       <i class="material-icons">&#xe5d4;</i>
+      <i class="material-icons">&#xe5d4;</i>
       <!--<i style="font-size:17px" class="fa">&#xf1c3;</i>
       <i style="font-size:17px" class="fa">&#xf0c7;</i>
       <i style="font-size:17px" class="fa">&#xf0c4;</i>
@@ -89,23 +90,39 @@
       <i style="font-size:17px" class="fa">&#xf01e;</i>
       <i style="font-size:15px" class="fa">&#xf04b;</i>
       <i style="font-size:17px" class="fa">&#xf28c;</i>
-      <i style="font-size:17px" class="fa">&#xf04d;</i> -->
-      <img src="../../../assets/header-icons/file-save.svg" class="fa"/>
-      <img src="@/FormDesigner/assets/header-icons/cut.svg" class="fa"/>
-      <img src="@/FormDesigner/assets/header-icons/copy.svg" class="fa"/>
-      <img src="@/FormDesigner/assets/header-icons/paste.svg" class="fa"/>
-      <img src="@/FormDesigner/assets/header-icons/find.svg" class="fa"/>
-      <img src="@/FormDesigner/assets/header-icons/undo.svg" class="fa"/>
-      <img src="@/FormDesigner/assets/header-icons/redo.svg" class="fa"/>
-      <img src="@/FormDesigner/assets/header-icons/design-mode.svg" class="fa"/>
-      <img src="@/FormDesigner/assets/header-icons/pj-explorer.svg" class="fa"/>
-      <img src="@/FormDesigner/assets/header-icons/pj-property.svg" class="fa"/>
-      <img src="@/FormDesigner/assets/header-icons/obj-browser.svg" class="fa"/>
-      <img src="@/FormDesigner/assets/header-icons/tool-box.svg" class="fa"/>
-      <img src="@/FormDesigner/assets/header-icons/help.svg" class="fa"/>
-      
-     
+      <i style="font-size:17px" class="fa">&#xf04d;</i>-->
 
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"  class="fa">
+        <path
+          class="change"
+          fill="#525252"
+          fill-opacity="0.75"
+          fill-rule="evenodd"
+          d="M1 15V1h11l3 3v11H1zm12-7H3v6h10V8zm-1-6H4v3h5V3h1v2h2V2z"
+        />
+      </svg>
+
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" class="fa">
+        <path
+          class="change"
+          fill="#525252"
+          fill-opacity="0.75"
+          fill-rule="evenodd"
+          d="M10.914.049c.25.121.358.419.245.672l-3.114 6.97 1.263 2.827c.257-.628.713-1.17 1.328-1.512l.145-.075c1.484-.722 3.248-.052 3.94 1.497.693 1.549.05 3.39-1.434 4.112-1.44.701-3.145.09-3.876-1.362l-.064-.135L7.5 8.91l-1.847 4.133c-.692 1.55-2.456 2.22-3.94 1.497-1.484-.722-2.127-2.563-1.434-4.112.692-1.55 2.456-2.22 3.94-1.497.689.335 1.196.911 1.473 1.587L6.954 7.69 3.841.721c-.113-.253-.005-.55.245-.672.24-.117.528-.017.644.222l.007.015L7.5 6.47 10.263.286c.109-.244.394-.353.637-.244l.014.007zM1.188 10.986c-.467 1-.034 2.19.967 2.657 1 .467 2.19.034 2.657-.967.467-1.001.034-2.19-.967-2.657-1-.467-2.19-.034-2.657.967zm12.624 0c-.467-1.001-1.656-1.434-2.657-.967-1 .466-1.434 1.656-.967 2.657.467 1 1.656 1.434 2.657.967 1-.467 1.434-1.656.967-2.657z"
+        />
+      </svg>
+    
+      <img src="@/FormDesigner/assets/header-icons/copy.svg" class="fa" />
+      <img src="@/FormDesigner/assets/header-icons/paste.svg" class="fa" />
+      <img src="@/FormDesigner/assets/header-icons/find.svg" class="fa" />
+      <img src="@/FormDesigner/assets/header-icons/undo.svg" class="fa" />
+      <img src="@/FormDesigner/assets/header-icons/redo.svg" class="fa" />
+      <img src="@/FormDesigner/assets/header-icons/design-mode.svg" class="fa" />
+      <img src="@/FormDesigner/assets/header-icons/pj-explorer.svg" class="fa" />
+      <img src="@/FormDesigner/assets/header-icons/pj-property.svg" class="fa" />
+      <img src="@/FormDesigner/assets/header-icons/obj-browser.svg" class="fa" />
+      <img src="@/FormDesigner/assets/header-icons/tool-box.svg" class="fa" />
+      <img src="@/FormDesigner/assets/header-icons/help.svg" class="fa" />
     </div>
   </div>
 </template>
@@ -113,12 +130,11 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+
 import { Mutation, Getter } from "vuex-class";
 /* import {  } from "../../../assets"; */
 @Component({})
-export default class Header extends Vue {
-
-}
+export default class Header extends Vue {}
 </script>
 
 <style scoped>
@@ -134,9 +150,9 @@ export default class Header extends Vue {
   border: none;
   float: left;
 }
-.thirdrow{
-margin-top: 5px;
-}  
+.thirdrow {
+  margin-top: 5px;
+}
 .tablink:hover {
   background-color: #4dbce0;
 }
@@ -164,7 +180,7 @@ margin-top: 5px;
 .fa {
   /* padding: 3px; */
   margin-left: 3px;
-  margin-right:3px;
+  margin-right: 3px;
 }
 .material-icons {
   size: 15px;
@@ -276,7 +292,7 @@ i:hover {
   border-radius: 3px;
   overflow: hidden;
 }
-.btn-style{
+.btn-style {
   border: 1px solid gray;
   border-radius: 5px;
   background-color: white;
@@ -290,117 +306,106 @@ i:hover {
   top: -3px;
   position: relative;
 }
-:focus{
-  outline:none
+:focus {
+  outline: none;
 }
-#menu-bar
-{
+#menu-bar {
 }
-ul.main-menu
-{
-    list-style-type: none;
-    margin: 0px 0px 10px 0px;
-    padding: 0px;  
-    z-index: 1000000;  
+ul.main-menu {
+  list-style-type: none;
+  margin: 0px 0px 10px 0px;
+  padding: 0px;
+  z-index: 1000000;
 }
-ul.main-menu > li
-{
-    margin: 0;
-    display: inline;
-    list-style-type: none;
-    padding: 6px 4px 6px 6px;
-    line-height: 28px;
-    vertical-align: middle;
-    cursor: default;
-    outline: none;
-    border-style: solid;
-    border-width: 1px 1px 0 1px;
-    border-color: transparent;
-    z-index: 1000000;
+ul.main-menu > li {
+  margin: 0;
+  display: inline;
+  list-style-type: none;
+  padding: 6px 4px 6px 6px;
+  line-height: 28px;
+  vertical-align: middle;
+  cursor: default;
+  outline: none;
+  border-style: solid;
+  border-width: 1px 1px 0 1px;
+  border-color: transparent;
+  z-index: 1000000;
 }
 
-ul.main-menu > li.active-menu
-{
-    background-color: #fff;
-    border-color: #ccc;
-    -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-    z-index: 1000000;
+ul.main-menu > li.active-menu {
+  background-color: #fff;
+  border-color: #ccc;
+  -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1000000;
 }
 
-ul.main-menu ul li a
-{
-    color: #000;
-    text-decoration: none;
-    display: block;
-    white-space: nowrap;
+ul.main-menu ul li a {
+  color: #000;
+  text-decoration: none;
+  display: block;
+  white-space: nowrap;
 }
-ul.main-menu li ul li a span
-{
-    font-size: 11px;
-    color: #999;
-    float:right;
-    right: 10px;
-    left: auto;
-    position: absolute;
+ul.main-menu li ul li a span {
+  font-size: 11px;
+  color: #999;
+  float: right;
+  right: 10px;
+  left: auto;
+  position: absolute;
 }
 
 /* SUBMENU */
-ul.main-menu > li  ul
-{
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: none;
-    border-width:1px;
-    border-style: solid;
-    border-color: #ccc;
-    background-color: #fff;
-    -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-    z-index: 1000000;
+ul.main-menu > li ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: none;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ccc;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1000000;
 }
-ul.main-menu li ul li
-{
-    display:list-item;
-    margin: 0;
-    line-height: 26px;
-    padding-right: 40px;
-    min-width: 100px;
-    cursor: pointer;
-    text-indent: 30px;
-    white-space:nowrap;
-    z-index: 1000000;
+ul.main-menu li ul li {
+  display: list-item;
+  margin: 0;
+  line-height: 26px;
+  padding-right: 40px;
+  min-width: 100px;
+  cursor: pointer;
+  text-indent: 30px;
+  white-space: nowrap;
+  z-index: 1000000;
 }
-ul.main-menu li:hover
-{
-    background-color: whiteSmoke; /*#fef7cb;*/
+ul.main-menu li:hover {
+  background-color: whiteSmoke; /*#fef7cb;*/
 }
-ul.main-menu li.active-menu:hover
-{
-    background-color: #fff;
+ul.main-menu li.active-menu:hover {
+  background-color: #fff;
 }
-ul.main-menu li ul li.disabled, ul.main-menu li ul li.disabled:hover, ul.main-menu li ul li.disabled a
-{
-    color: #ddd;
-    cursor:default;
-    background-color: #fff;
+ul.main-menu li ul li.disabled,
+ul.main-menu li ul li.disabled:hover,
+ul.main-menu li ul li.disabled a {
+  color: #ddd;
+  cursor: default;
+  background-color: #fff;
 }
 
-ul.main-menu li.separator  
-{
-    border-top: 1px solid #ddd; 
-    margin-top: 5px;
-    margin-bottom: 5px;
+ul.main-menu li.separator {
+  border-top: 1px solid #ddd;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
-.submenu 
-{
-    /* background-image: url(../images/menu-right-arrow.png); */
-    background-repeat: no-repeat;
-    background-position: right center;
+.submenu {
+  /* background-image: url(../images/menu-right-arrow.png); */
+  background-repeat: no-repeat;
+  background-position: right center;
 }
 
 /* .tablink:hover .dropbtn {background-color: #3e8e41;} */

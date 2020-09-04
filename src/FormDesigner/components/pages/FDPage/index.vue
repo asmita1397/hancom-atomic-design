@@ -44,7 +44,7 @@
 
           <SplitArea :size="70" style="background:gray;oveflow:hidden;">
             <div style="position:relative;">
-              <Userform :Height="userFormData.properties.Height"/>
+              <Userform :Height="userFormData.properties.Height" :propControlData="userFormData" />
             </div>
           </SplitArea>
 

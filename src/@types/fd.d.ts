@@ -49,7 +49,7 @@ interface controlProperties {
     Height?: number,
     HelpContextID?: string,
     HideSelection?: boolean,
-    ID: number,
+    ID?: number,
     IMEMode?: number,
     Index?: number,
     IntegralHeight?: boolean,
