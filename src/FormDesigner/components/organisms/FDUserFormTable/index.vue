@@ -314,7 +314,7 @@ import scrollBars from "@/FormDesigner/models/scrollBars.json";
 import specialEffect from "@/FormDesigner/models/specialEffect.json";
 import startUpPosition from "@/FormDesigner/models/startUpPosition.json";
 import pictureSizeMode from "@/FormDesigner/models/pictureSizeMode.json"; 
- import { validators } from "@/validators/validator.js";
+//  import { validators } from "@/validators/validator.js";
 import { Getter, Mutation } from 'vuex-class';
 @Component({
   

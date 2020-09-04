@@ -26,11 +26,8 @@ storiesOf('UseLabel', module)
             tabIndex: {
                 default: number('TabIndex', -1)
             },
-            disabled: {
-                default: boolean('Disabled', false)
-            },
             id: {
-                default: text('ID', 'Hello')
+                default: text('ID', 'Label1')
             },
             fontStyle: {
                 default: boolean('FontItalic', false)
@@ -116,7 +113,8 @@ storiesOf('UseLabel', module)
                     fontSize: `${this.fontSize}px`,
                     fontStyle: this.fontStyle ? 'italic' : '',
                     textDecoration: this.textDecoration ? 'underline' : '',
-                    fontWeight: this.fontWeight ? 'bold' : ''
+                    fontWeight: this.fontWeight ? 'bold' : '',
+                    position: 'absolute'
                 }
             }
         }

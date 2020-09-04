@@ -21,13 +21,10 @@ storiesOf('UseCommandButton', module)
         components: { UseCommandButton },
         props: {
             caption: {
-                default: text('Caption', 'Label1'),
+                default: text('Caption', 'CommandButton'),
             },
             tabIndex: {
                 default: number('TabIndex', -1)
-            },
-            disabled: {
-                default: boolean('Disabled', false)
             },
             id: {
                 default: text('ID', 'Hello')
@@ -62,10 +59,7 @@ storiesOf('UseCommandButton', module)
             },
             color: {
                 default: select('Color', backColor, 'black')
-            },
-            textAlign: {
-                default: select('TextAlign', textAlign, '0')
-            },
+            }
 
 
         },
@@ -77,9 +71,7 @@ storiesOf('UseCommandButton', module)
           @click="action"
           :id="id"
           :tabIndex="tabIndex"
-          :outline="outline"
-          :check="check"
-          :disabled="disabled">{{ caption }}</UseCommandButton>
+         >{{ caption }}</UseCommandButton>
       `,
         methods: {
             action: action('clicked'),
@@ -105,15 +97,14 @@ storiesOf('UseCommandButton', module)
                     height: `${this.height}px`,
                     top: `${this.top}px`,
                     backgroundColor: this.backgroundColor,
-                    textAlign: this.textAlign === '0' ? 'left' : this.textAlign === '1' ? 'center' : 'right',
-                    border: this.border ? '1px solid black' : 'none',
                     background: this.background ? 'transparent' : this.backgroundColor,
                     color: this.color,
                     cursor: 'nesw-resize',
                     fontSize: `${this.fontSize}px`,
                     fontStyle: this.fontStyle ? 'italic' : '',
                     textDecoration: this.textDecoration ? 'underline' : '',
-                    fontWeight: this.fontWeight ? 'bold' : ''
+                    fontWeight: this.fontWeight ? 'bold' : '',
+                    position: 'absolute'
                 }
             }
         }

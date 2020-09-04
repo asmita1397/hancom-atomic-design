@@ -7,7 +7,6 @@
     height:`${Height}px`,
     top:`${Top}px`,
     backgroundColor:BackColor,
-    textAlign: TextAlign===0? 'left': TextAlign===1? 'center': 'right',
     background: BackStyle? 'transparent':'',
     color:ForeColor,
     cursor:MousePointer===7?'default':'',
