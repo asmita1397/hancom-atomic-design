@@ -51,7 +51,7 @@
 
           <SplitArea :size="80" style="background:gray;oveflow:hidden;">
             <div style="position:relative;">
-              <Userform :Height="userFormData.properties.Height" :propControlData="userFormData" />
+              <Userform />
             </div>
           </SplitArea>
         </Split>
@@ -96,9 +96,7 @@ export default class FDPage extends Vue {
       console.log( this.display)
     }); */
   }
-  get userFormData() {
-    return this.$store.state.fd.controlData;
-  }
+ 
 }
 </script>
 

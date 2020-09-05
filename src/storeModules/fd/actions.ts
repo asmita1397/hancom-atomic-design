@@ -12,6 +12,12 @@ export interface IupdateControl {
   value: any
 }
 
+export interface IupdateUserform {
+  target: any,
+  proprtyName: keyof controlProperties,
+  value: any
+}
+
 export interface IdeleteControl {
   parent: FdControlVue,
   target: FdControlVue[]
@@ -45,7 +51,11 @@ interface FdActions {
   updateControl (
     context: AugmentedActionContext,
     payload: IupdateControl
-  ): void
+  ): void  
+  updateUserform (
+    context: AugmentedActionContext,
+    payload: IupdateUserform
+  ): void 
   deleteControl (
     context: AugmentedActionContext,
     payload: IdeleteControl
@@ -67,12 +77,15 @@ interface FdActions {
 const actions : ActionTree<fdState, rootState> & FdActions = {
   fdActionSample (context, payload) {
     context.commit('fdActionSample', payload)
-  },
+  }, 
   addControl (context, payload) {
     context.commit('addControl', payload)
   },
   updateControl (context, payload) {
     context.commit('updateControl', payload)
+  },
+  updateUserform (context, payload) {
+    context.commit('updateUserform', payload)
   },
   deleteControl (context, payload) {
     context.commit('deleteControl', payload)

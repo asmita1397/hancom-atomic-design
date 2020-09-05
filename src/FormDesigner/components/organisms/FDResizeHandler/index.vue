@@ -35,6 +35,7 @@ export default class ResizeDiv extends Vue {
   @Action("fd/updateControl") updateControl!: (payload: IupdateControl) => void;
   activeControlID: any = "";
   propControlData: any = {};
+  @Prop() userFormKey: string
   /* 
   @Prop() index!: any;
   
@@ -55,6 +56,7 @@ export default class ResizeDiv extends Vue {
   }
 
   handleMouseDown(event: any, handler: string, controlID: any) {
+     console.log(controlID)
     this.resizeDiv = handler;
     this.activeControlID = controlID;
     this.positions.clientX = event.clientX;
@@ -73,8 +75,8 @@ export default class ResizeDiv extends Vue {
       if (this.ctrlData[i].properties.ID === this.activeControlID) {
         this.propControlData = this.ctrlData[i];
         const controlProperty = this.ctrlData[i].properties;
-        /*   console.log(this.ctrlData[i].properties.ID) */
-        const dragResizeRef = this.refOfResizeDiv[controlProperty.ID][0];
+         
+        const dragResizeRef = this.refOfResizeDiv[this.userFormKey.concat(this.ctrlData[i].properties.ID)][0];
         const dragResizeControl = controlProperty;
 
         let top = -1;
@@ -95,6 +97,7 @@ export default class ResizeDiv extends Vue {
         incHeight = dragResizeControl.Height + this.positions.movementY;
         decWidth = dragResizeControl.Width - this.positions.movementX;
         decHeight = dragResizeControl.Height - this.positions.movementY;
+       
         if (this.resizeDiv === "drag") {
           this.updateControlAction("Top", top);
           this.updateControlAction("Left", left);
@@ -133,14 +136,17 @@ export default class ResizeDiv extends Vue {
     document.onmousemove = null;
   }
   mounted() {
-    EventBus.$on("drag", (event: any, controlID: any) => {
-      /*   console.log("----",controlID); */
-      this.activeControlID = controlID;
+    EventBus.$on("drag", (event: any, controlID: any,userFormKey: string) => {
+     
+        if(userFormKey===this.userFormKey)
+        {
+             console.log("----",this.userFormKey);
       this.handleMouseDown(event, "drag",controlID);
+        }
     });
   }
   get ctrlData() {
-    return this.$store.state.fd.controlData.controls;
+    return this.$store.state.fd.userformData[this.userFormKey].controls;
   }
 }
 </script>

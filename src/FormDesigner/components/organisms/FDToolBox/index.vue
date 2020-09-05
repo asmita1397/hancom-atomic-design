@@ -13,9 +13,10 @@
       </div>
       <div class="toolbox-body">
         <div>
-          <Button class="toolbox-tab">Controls</Button>
+          <Button class="toolbox-tab">Controls </Button>
         </div>
         <!-- <div class="toolbox-icon-border"> -->
+
           <div class="toolbox-icons">
             <div class="container">
               <img
@@ -177,6 +178,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { EventBus } from '../../../event-bus';
+import  '../../../assets/toolbox-icons1/select-object.svg'
 // import {  } from "../../../assets/toolbox-icons1/"
 @Component({
   components: {
@@ -188,6 +190,7 @@ export default class ToolBox extends Vue {
         console.log(controlName)
         EventBus.$emit('selectedControl',controlName)
   }
+ 
 }
 </script>
 

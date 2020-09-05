@@ -8,6 +8,12 @@ interface IMaddControl {
 
 interface IMupdateControl {
   target: FdControlVue,
+  proprtyName: keyof controlProperties, 
+  value: any
+}
+
+interface IMupdateUserform {
+  target: any,
   proprtyName: keyof controlProperties,
   value: any
 }
@@ -33,10 +39,11 @@ interface IMideEmitAction {
 export type FdMutations<S = fdState> = {
   addControl(state: S, payload: IMaddControl): void
   updateControl(state: S, payload: IMupdateControl): void
+  updateUserform(state: S, payload: IMupdateUserform): void
   deleteControl(state: S, payload: IMdeleteControl): void
   selectControl(state: S, payload: IMselectControl): void
   fdEmitAction(state: S, payload: IMfdEmitAction): void
-  ideEmitAction(state: S, payload: IMideEmitAction): void
+  ideEmitAction(state: S, payload: IMideEmitAction): void 
 }
 
 const mutations : MutationTree<fdState> & FdMutations = {
@@ -52,6 +59,14 @@ const mutations : MutationTree<fdState> & FdMutations = {
     if (payload.proprtyName && targetData.properties) {
       // ToDo: check update value is valid
       targetData.properties[payload.proprtyName] = payload.value
+    }
+  },
+  updateUserform (state, payload) {
+    
+    const targetData = payload.target.propControlData
+    if (payload.proprtyName && targetData.properties) {
+      // ToDo: check update value is valid
+      targetData.extraDatas[payload.proprtyName] = payload.value
     }
   },
   deleteControl (state, payload) {

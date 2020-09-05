@@ -8,5 +8,8 @@ module.exports = {
             .loader(require.resolve('@storybook/addon-storysource/loader'))
     },
     lintOnSave: false,
+     devServer: {
+        port: 9000
+    }
 
 }

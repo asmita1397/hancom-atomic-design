@@ -1,67 +1,51 @@
 <template >
-  <div class="tree" style="min-height:'50px'">
-    <div @click="nodeClicked" :style="{'margin-left': `${depth * 2}px`}" class="node">
-      <!-- <span v-if="hasChildren" class="fa">{{expanded ? '[-] &#xf07c;' : '[+] &#xf07b;'}}</span> -->
-      <span v-if="hasChildren">
-        <span v-if="expanded">
-          [-]
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-            <g fill="none" fill-rule="evenodd">
-              <path
-                class="change"
-                fill="#525252"
-                fill-opacity="0.75"
-                d="M0 1L5 1 7 3 15 3 15 6 14 6 14 4 6.586 4 4.585 2 1 2 1 10 0 14z"
-              />
-              <path fill="#DAA529" fill-rule="nonzero" d="M16 6L14 14 0 14 2 6z" />
-            </g>
-          </svg>
-        </span>
-        <span v-else>
-          [+]
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-            <path fill="#DAA529" d="M0 1L5 1 7 3 15 3 15 14 0 14z" />
-          </svg>
-        </span>
+  <div class="tree" style="min-height:'50px';marginLeft:'20px'">
+    <div v-bind:key="userFormKey" v-for="(userForm,userFormKey) in usrFrmData">
+      <span style="margin-left:20px" @click="dispalyUserform(userFormKey)">
+        <img src="../../../assets/user-from.svg" />
+        {{userForm.properties.Name}}
       </span>
-      <span class="type" v-else>
-        <!-- <i style="font-size:15px" class="fa">&#xf15c;</i> -->
-        <img src="@/FormDesigner/assets/projectExplorer-icons/user-from.svg" />
-      </span>
-      {{node.name}}
     </div>
-
-    <ul v-if="expanded">
-      <TreeBrowser
-        v-for="child in node.userForms"
-        :key="child.name"
-        :node="child"
-        :depth="depth + 1"
-      />
-    </ul>
   </div>
 </template>
 
 
 <script lang="ts">
-// import '../assets/projectExplorer-icons'
 import { Component, Vue, Prop } from "vue-property-decorator";
+import { IupdateUserform } from "@/storeModules/fd/actions";
+import { State, Action } from "vuex-class";
 
 @Component({})
 export default class TreeBrowser extends Vue {
-  @Prop() node!: any;
-  expanded = false;
-  depth: object = {
-    type: 0,
-    default: 0
-  };
+  @Action("fd/updateUserform") updateUserform!: (
+    payload: IupdateUserform
+  ) => void;
+  propControlData = "";
+  dispalyUserform(userFormKey: string) {
+    
+    console.log("--------------", userFormKey);
 
-  nodeClicked() {
-    this.expanded = !this.expanded;
+    for (const key in this.usrFrmData) {
+      this.propControlData = this.usrFrmData[key];
+      if (key === userFormKey) {
+        this.updateUserform({
+          target: this,
+          proprtyName: "display",
+          value: "block"
+        });
+      } else {
+        this.propControlData = this.usrFrmData[key];
+        this.updateUserform({
+          target: this,
+          proprtyName: "display",
+          value: "none"
+        });
+      }
+    }
+    console.log(this.usrFrmData)
   }
-
-  get hasChildren() {
-    return this.node.userForms;
+  get usrFrmData() {
+    return this.$store.state.fd.userformData;
   }
 }
 </script>

@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div class="outer-userform-window">
+     <div v-bind:key="userFormKey" v-for="(userForm,userFormKey) in usrFrmData">
+    <div class="outer-userform-window"   :style="{
+           display:userForm.extraDatas.display
+          
+           }">
       <div class="outer-userform-header">
         <div>
           <img src="../../../assets/userform/OuterWindow.png" style="width:12px;height:12px" />
@@ -32,12 +36,13 @@
           </div>
         </div>
       </div>
+    
       <div class="outer-userform-body">
         <div
           :class="[innerWindowFocused?'inner-window-border':null]"
           :style="{
-           width:`${ctrlData.properties.Width+10}px`,
-           height:`${ctrlData.properties.Height+10}px`,
+           width:`${userForm.properties.Width+10}px`,
+           height:`${userForm.properties.Height+10}px`,
            }"
         >
           <div v-if="innerWindowFocused" class="handle handle-tl"></div>
@@ -52,15 +57,15 @@
             class="inner-userform-window"
             :style="{
                  margin:innerWindowFocused?'': '5px', 
-                 left:`${ctrlData.properties.Left}px`,
-                 width:`${ctrlData.properties.Width}px`,
-                 height:`${Height}px`,
-                 top:`${ctrlData.properties.Top}px`
+                 left:`${userForm.properties.Left}px`,
+                 width:`${userForm.properties.Width}px`,
+                 height:`${userForm.properties.Height}px`,
+                 top:`${userForm.properties.Top}px`
                   }"
           >
             <div class="inner-userform-header">
               <div>
-                <span>{{ctrlData.properties.Caption}}</span>
+                <span>{{userForm.properties.Caption}}</span>
               </div>
               <div>
                 <button class="ui-btn close closeButton">
@@ -75,25 +80,28 @@
 
             <div
               class="inner-window-content"
-              :style="{zoom:`${ctrlData.properties.Zoom}%`,border:ctrlData.properties.BorderStyle?'1px solid black':'none',
-              fontSize:`${ctrlData.properties.Font.FontSize}px`}"
+              :style="{zoom:`${userForm.properties.Zoom}%`,border:userForm.properties.BorderStyle?'1px solid black':'none',
+              fontSize:`${userForm.properties.Font.FontSize}px`}"
               tabindex="0"
-              @click.self="addControlObj($event)"
+               @click="addControlObj($event,userFormKey)"
+               @mouseup="calSelectedAreaStyle(userFormKey)"
               @blur="innerWindowFocus(false)"
-            >
-              <div v-for="(control,controlKey) in ctrlData.controls" :key="controlKey">
+            >  
+           <drag-selector :ref="'dragSelector'.concat(userFormKey)">
+              <div v-for="(control,controlKey) in userForm.controls" :key="controlKey">
                 <div
                   class="mainDiv"
                   :style="{
-                    width:`${control.properties.Width+4}px`,
-                  height: `${control.properties.Height+2}px`, 
+                    width:`${control.properties.Width+2}px`,
+                  height: `${control.properties.Height}px`, 
                    left:`${control.properties.Left}px`,
                   top: `${control.properties.Top}px`
                   }"
-                  @mousedown.stop="handleDrag($event,control.properties.ID)"
-                  :ref="control.properties.ID"
+                 
+                  @mousedown.stop="handleDrag($event,control.properties.ID,userFormKey)"
+                  :ref="userFormKey.concat(control.properties.ID)"
                 >
-                  <ResizeHandlers :refOfResizeDiv="$refs" :controlData="control.properties.ID" />
+                  <ResizeHandlers :refOfResizeDiv="$refs" :controlData="control.properties.ID" :userFormKey="userFormKey" />
                   <UseLabel
                     v-if="control.type==='Label'"
                     :Accelerator="control.properties.Accelerator"
@@ -115,7 +123,7 @@
                     :ForeColor="control.properties.ForeColor"
                     :Height="control.properties.Height"
                     :HelpContextID="control.properties.HelpContextID"
-                    :Left="control.properties.Left+1"
+                    :Left="control.properties.Left"
                     :MouseIcon="control.properties.MouseIcon"
                     :MousePointer="control.properties.MousePointer"
                     :Name="control.properties.Name"
@@ -175,11 +183,13 @@
                   >{{ control.properties.Caption}}</UseCommandButton>
                 </div>
               </div>
-            </div>
+           
+           </drag-selector> </div>
           </div>
         </div>
       </div>
     </div>
+     </div>
   </div>
 </template>
 
@@ -192,65 +202,105 @@ import { CommandButton } from "@/FormDesigner/models/CommandButton";
 import { Label } from "@/FormDesigner/models/Label";
 import { State, Action } from "vuex-class";
 import { IaddControl } from "@/storeModules/fd/actions";
+import DragSelect from "@/FormDesigner/components/organisms/FDDragSelect/index.vue"
+
 
 import { EventBus } from "@/FormDesigner/event-bus";
 @Component({
   components: {
     UseLabel,
     ResizeHandlers,
-    UseCommandButton
+    UseCommandButton,
+    DragSelect
   }
 })
 export default class UserForm extends Vue {
   @Prop({ default: 18 }) private Height!: Number;
   @Action("fd/addControl") addControl!: (payload: IaddControl) => void;
-  @Prop({}) propControlData!: any;
-
+  propControlData: any ={}
+   
+  selectedAreaStyle: any = {}
   selectedControlName = "";
   innerWindowFocused: boolean = false;
+  controlData: any = ""
   innerWindowFocus(value: boolean) {
     this.innerWindowFocused = value;
   }
-  handleDrag(event: any, controlID: any) {
-    EventBus.$emit("drag", event, controlID);
+  handleDrag(event: any, controlID: any,userFormKey: string) {
+    EventBus.$emit("drag", event, controlID,userFormKey);
   }
-  addControlObj(event: any) {
+  calSelectedAreaStyle(userFormKey: string)
+  {
+      const refName ="dragSelector".concat(userFormKey)
+      this.selectedAreaStyle =(this as any).$refs[refName][0].selectAreaStyle
+  }
+  addControlObj(e: any,userFormKey: string) {
+  /*   this.controlData=this.usrFrmData[userFormKey]
+   console.log("====>",this.controlData) */
+    this.propControlData =this.usrFrmData[userFormKey]
+    console.log("=========>",this.ctrlData)
     if(this.selectedControlName!=="")
     {
     let Name = "";
     let data = {};
     let type = "";
-    
-    const Left = event.offsetX;
-    const Top = event.offsetY;
+    const Left =this.selectedAreaStyle.width === "0px"
+            ? e.offsetX
+            : parseInt(this.selectedAreaStyle.left)
+    const Top =this.selectedAreaStyle.width === "0px"
+            ? e.offsetY
+            : parseInt(this.selectedAreaStyle.top)
+    let Width = -1
+    let Height = -1
     const id = this.propControlData.controls.length + 1;
     const addTarget = this;
-    console.log(event.clientX);
+   
     if (this.selectedControlName === "Label") {
       Name = Label.Name;
       data = Object.assign({}, Label);
       type = "Label";
+      Width= this.selectedAreaStyle.width === "0px"
+            ? Label.Width
+            : parseInt(this.selectedAreaStyle.width)
+       Height= this.selectedAreaStyle.width === "0px"
+            ? Label.Height
+            : parseInt(this.selectedAreaStyle.height)
+
     } else if (this.selectedControlName === "CommandButton") {
       Name = CommandButton.Name;
       data = Object.assign({}, CommandButton);
       type = "CommandButton";
+       Width= this.selectedAreaStyle.width === "0px"
+            ? Label.Width
+            : parseInt(this.selectedAreaStyle.width)
+       Height= this.selectedAreaStyle.width === "0px"
+            ? Label.Height
+            : parseInt(this.selectedAreaStyle.height)
     }
     this.addControl({
       target: addTarget,
       item: {
-        properties: { ...data, ID: id, Left: Left, Top: Top },
+        properties: { ...data, ID: id, Left: Left, Top: Top,Width:Width,Height:Height },
         controls: [],
         extraDatas: null,
         type: type
       }
     });
     this.selectedControlName = "";
+  } 
   }
-  }
+ 
   get ctrlData() {
+   
     return this.$store.state.fd.controlData;
   }
+  get usrFrmData()
+  {
+     return this.$store.state.fd.userformData;
+  }
   mounted() {
+    this.controlData= this.ctrlData
+  /*  console.log("storedata",this.$store.state.fd.userformData) */
     EventBus.$on("selectedControl", (controlName: string) => {
       this.selectedControlName = controlName;
     });
@@ -331,6 +381,7 @@ export default class UserForm extends Vue {
     rgb(0, 0, 0) 0.5px,
     rgba(0, 0, 0, 0) 0.2px
   );
+ overflow:hidden;
 }
 .inner-window-content:focus {
   outline: none;

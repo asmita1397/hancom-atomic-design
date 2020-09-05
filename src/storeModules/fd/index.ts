@@ -1,7 +1,7 @@
 
 import actions from './actions'
 import mutations from './mutations'
-
+import userData from "../../FormDesigner/models/dataModal.json"
 const controlData: controlData = {
   properties: {
     BackColor: "#ffffff",
@@ -54,6 +54,13 @@ const controlData: controlData = {
   type: ''
 }
 
+
+
+
+
+
+const userformData: any = userData
+
 const _main = new WeakMap()
 const _selected = new WeakMap()
 
@@ -76,7 +83,9 @@ class SelectedControls {
 
 const state: fdState = {
   controlData: controlData,
-  selectedControls: new SelectedControls()
+  userformData: userformData,
+  selectedControls: new SelectedControls(),
+ 
 }
 
 export default {

@@ -5,6 +5,8 @@ import store from './store'
 import VueSplit from 'vue-split-panel'
 
 Vue.use(VueSplit)
+import VueDragSelector from "vue-drag-selector";
+Vue.use(VueDragSelector);
 const initUSE = async () => {
   const events: Vue = new Vue()
   Object.defineProperties(Vue.prototype, {

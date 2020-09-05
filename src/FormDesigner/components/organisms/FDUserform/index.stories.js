@@ -37,7 +37,7 @@ storiesOf('Userform', module)
             }
         },
         template: `
-        <UserForm />
+        <UserForm propControlData="propControlData"/>
         `,
         methods: {
             action: action('clicked')

@@ -2,6 +2,7 @@
 interface fdState {
   controlData: controlData,
   selectedControls: selectedControls
+  userformData: any
 }
 
 interface controlData {
@@ -10,6 +11,7 @@ interface controlData {
   extraDatas: object | null,
   type: string
 }
+
 
 interface selectedControls {
   main: FdControlVue | FdControlVue[],
